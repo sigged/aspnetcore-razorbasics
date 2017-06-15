@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreCourse.RazorBasics", "CoreCourse.RazorBasics\CoreCourse.RazorBasics.csproj", "{0E581E54-321B-4777-8A74-297E7C2AB79F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreCourse.RazorBasics", "CoreCourse.RazorBasics\CoreCourse.RazorBasics.csproj", "{0E581E54-321B-4777-8A74-297E7C2AB79F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = e044a601-1c49-4279-a416-38047a41504e
 	EndGlobalSection
 EndGlobal
