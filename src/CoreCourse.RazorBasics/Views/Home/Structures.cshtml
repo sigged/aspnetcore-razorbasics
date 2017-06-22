@@ -1,0 +1,91 @@
+@model CoreCourse.RazorBasics.ViewModels.HomeStructuresVm
+
+<h2>Structures</h2>
+
+<section>
+    <header><h3>Example 1 - If / Else</h3></header>
+
+    @if (Model.DiceValues.Sum() > 9)
+    {
+        <p>The sum of the dice is greater than <b>9</b></p>
+    }
+    else if(Model.DiceValues.Sum() > 6)
+    {
+        <p>The sum of the dice is between <b>6 and 9</b></p>
+    }
+    else
+    {
+        <p>The sum of the dice is lower than or equal to <b>6</b></p>
+    }
+</section>
+
+<section>
+    <header><h3>Example 2 - Switch / Case</h3></header>
+
+    @switch (Model.DiceValues.Sum())
+    {
+        case 12:
+            <p>The sum of the dice is <b>exactly 12</b></p>
+            break;
+        case 2:
+            <p>Snake eyes!</p>
+            break;
+        default:
+            <p>The sum of the dice is <b>@Model.DiceValues.Sum()</b></p>
+            break;
+    }
+</section>
+
+
+<section>
+    <header><h3>Example 3 - For (iteration)</h3></header>
+
+    <ul>
+        @for (int i = 0; i < Model.DiceValues.Length; i++)
+        {
+            <li>@Model.DiceValues[i]</li>
+        }
+    </ul>
+</section>
+
+<section>
+    <header><h3>Example 4 - ForEach (enumeration)</h3></header>
+
+    <ul>
+        @foreach (int diceValue in Model.DiceValues)
+        {
+            <li>@diceValue</li>
+        }
+    </ul>
+</section>
+
+<section>
+    <header><h3>Example 5 - Try Catch</h3></header>
+
+    <p>
+    Dice with index 1028 has value: 
+    @try
+    {
+        <text>@Model.DiceValues[1028]</text>
+    }
+    catch (IndexOutOfRangeException ex)
+    {
+        <text>Error: @ex.Message</text>
+    }
+    </p>
+</section>
+
+<section>
+    <header><h3>Example 6 - Using block</h3></header>
+
+    <p>This form posts to the same URL</p>
+    @using (Html.BeginForm())
+    {
+        <div>
+            <label>Number of dice</label>
+            <input type="hidden" asp-for="@Model.PlayerName" />
+            <input type="number" asp-for="@Model.NumberOfDice" />
+            <input type="submit" value="Throw Dice!" />
+        </div>
+    }
+</section>

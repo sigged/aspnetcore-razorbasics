@@ -1,0 +1,59 @@
+@using CoreCourse.RazorBasics.Mvc
+@using CoreCourse.RazorBasics.ViewModels
+@model HomeDirectivesVm
+
+@inject IMazeDecorationService mazeDecorationService
+
+@functions{
+
+    public string GetHelloOfDay()
+    {
+        int hour = DateTime.Now.Hour;
+        if (hour < 3 || hour > 18)
+            return HourlyGreetings.GOOD_EVENING;
+        if (hour < 12)
+            return HourlyGreetings.GOOD_MORNING;
+        else
+            return HourlyGreetings.GOOD_DAY;
+    }
+
+    public string GetMazeCellStyle(int x, int y)
+    {
+        if (Model.MazeCells[x, y])
+            return mazeDecorationService.GetFillStyle();
+        else
+            return mazeDecorationService.GetEmptyStyle();
+    }
+}
+
+<h2>Directives</h2>
+
+<section>
+    <header><h3>Example 1 - Functions - Print hello</h3></header>
+
+    <div>@GetHelloOfDay()</div>
+</section>
+
+<section>
+    <header><h3>Example 2 - Functions - Random maze</h3></header>
+
+    <div>
+        <table style="border-collapse: collapse;">
+            @for (int x = 0; x < Model.MazeCells.GetUpperBound(0); x++)
+            {
+                <tr>
+                    @for (int y = 0; y < Model.MazeCells.GetUpperBound(1); y++)
+                    {
+                        <text>
+                            <td style="@GetMazeCellStyle(x,y)"></td>
+                        </text>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</section>
+
+@section footer{
+    - <b>This goes in the footer</b>
+}

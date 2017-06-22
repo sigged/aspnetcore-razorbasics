@@ -1,0 +1,53 @@
+@model CoreCourse.RazorBasics.ViewModels.HomeExpressionsVm
+
+<h2>Expressions</h2>
+
+<section>
+    <header><h3>Example 1</h3></header>
+
+    <p>Welcome, @Model.UserName.</p>
+    <p>@Model.UserName, mail us here: <a href="mailto://info@test.example">info@test.example</a></p>
+    <p>The value of the variabele @@Model.UserName is "@Model.UserName"</p>
+</section>
+
+<section>
+    <header><h3>Example 2 - Implicit</h3></header>
+
+    <p>@Model.UserName.ToUpper(), your e-mail is <a href="mailto://@Model.UserPrimaryMail">@Model.UserPrimaryMail</a></p>
+</section>
+
+<section>
+    <header><h3>Example 3 - Implicit (error)</h3></header>
+
+    <p>@Model.UserName, you have @Model.MaxAddresses - @Model.UserAllMail.Count() addresses left.</p>
+</section>
+
+<section>
+    <header><h3>Example 4 - Explicit</h3></header>
+
+    <p>@Model.UserName, you have @(Model.MaxAddresses - Model.UserAllMail.Count()) addresses left.</p>
+</section>
+
+<section>
+    <header><h3>Example 5 - Explicit Transition detection (error)</h3></header>
+
+    <p>@Model.UserName, your new e-mail address is sigged@Model.MailDomain.</p>
+</section>
+
+<section>
+    <header><h3>Example 6 - Explicit Transition detection (correct)</h3></header>
+
+    <p>@Model.UserName, your new e-mail address is sigged@(Model.MailDomain).</p>
+</section>
+
+<section>
+    <header><h3>Example 7 - HTML Encoding (safe)</h3></header>
+
+    <p>Here's some HTML: @Model.HtmlContent</p>
+</section>
+
+<section>
+    <header><h3>Example 8 - HTML Encoding (unsafe)</h3></header>
+
+    <p>Here's some HTML: @Html.Raw(Model.HtmlContent)</p>
+</section>

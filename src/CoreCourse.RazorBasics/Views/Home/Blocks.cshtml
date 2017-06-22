@@ -1,0 +1,46 @@
+<h2>Code Blocks</h2>
+
+<section>
+    <header><h3>Example 1 - Code Blocks</h3></header>
+
+    @{
+        int inboxSizeInMB = 3265;
+        int inboxMaxSizeInMB = 1024 * 10; //10 GB
+        decimal inboxUsagePercent = (decimal)inboxSizeInMB / inboxMaxSizeInMB;
+    }
+    <p>Your inbox is @inboxUsagePercent.ToString("P2") full.</p>
+    @* draw a usage bar to visualize percentage *@
+    <div style="width:200px;height:10px;border:1px solid #000">
+        <div style="height:100%;width:@inboxUsagePercent.ToString("P0");background-color:#666"></div>
+    </div>
+</section>
+
+<section>
+    <header><h3>Example 2 - Implicit transition</h3></header>
+
+    @{
+        string homeInboxName = "siegfried@example.com";
+        <p>Loading inbox @homeInboxName</p>
+        //do other stuff (yes,this is C# again!)
+        <p>please wait...</p>
+    }
+</section>
+
+<section>
+    <header><h3>Example 3 - Explicit transition with &lt;text&gt;</h3></header>
+
+    @{
+        string workInboxName = "siegfried@work.example";
+        <text>Loading inbox @workInboxName</text> //try removing the <text> tags to see the error
+    }
+</section>
+
+<section>
+    <header><h3>Example 4 - Explicit transition with @@:</h3></header>
+
+    @{
+        string githubInboxName = "siegfried@github.example";
+        //try removing @: to see the error
+        @:Loading inbox @githubInboxName
+    }
+</section>
