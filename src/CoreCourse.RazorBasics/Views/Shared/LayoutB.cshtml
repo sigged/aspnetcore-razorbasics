@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    </environment>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <a class="btn btn-primary pull-left" style="margin:8px;" href="~/">&laquo; Back</a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-navigation" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Layout B</a>
+            </div>
+            <div class="collapse navbar-collapse" id="collapsable-navigation">
+                <ul class="nav navbar-nav">
+                    <li><a href="~/layoutexamples/index">Alpha</a></li>
+                    <li><a href="~/layoutexamples/bravo">Bravo</a></li>
+                    <li><a href="~/layoutexamples/charlie">Charlie</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row">
+            <main class="col-sm-8">
+                <header><h1>@ViewBag.Title</h1></header>
+                @RenderBody()
+            </main>
+            <aside class="col-sm-4">
+                @RenderSection("Description", false)
+            </aside>
+        </div>
+        <footer>
+            <div class="well well-lg">&copy; @DateTime.Now.Year - CoreCourse.RazorBasics</div>
+        </footer>
+    </div>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+    </environment>
+</body>
+</html>

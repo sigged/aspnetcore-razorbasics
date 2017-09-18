@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    </environment>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default">
+            <a class="btn btn-primary pull-left" style="margin:8px;" href="~/">&laquo; Back</a>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Layout A</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="~/layoutexamples/index">Alpha</a></li>
+                <li><a href="~/layoutexamples/bravo">Bravo</a></li>
+                <li><a href="~/layoutexamples/charlie">Charlie</a></li>
+            </ul>
+        </nav>
+        <main>
+            <header><h1>@ViewBag.Title</h1></header>
+            @RenderBody()
+        </main>
+        <aside>
+            @RenderSection("Description", false)
+        </aside>
+        <footer class="panel panel-default">
+            <div class="panel-body">&copy; @DateTime.Now.Year - CoreCourse.RazorBasics</div>
+        </footer>
+    </div>
+</body>
+</html>
