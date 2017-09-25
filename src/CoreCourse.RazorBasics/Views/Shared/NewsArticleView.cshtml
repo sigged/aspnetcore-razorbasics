@@ -1,0 +1,21 @@
+@model CoreCourse.RazorBasics.Domain.Entities.NewsArticle
+
+<article class="panel panel-default">
+    <section class="panel-heading">
+        <h4 style="margin:0;">@Model.Title</h4>
+    </section>
+    <section class="panel-body">
+        @{
+            string content = Model.Content;
+            int? limitChars = (int?)ViewBag.LimitChars;
+            if (limitChars.HasValue && content.Length >= limitChars)
+            {
+                content = content.Substring(0, limitChars.Value);
+            }
+            @Html.Raw(content + "...")
+        }
+    </section>
+    <section class="panel-footer text-right">
+        <i>Authored by @Model.Author on @Model.CreationDate.ToString("dd MMM yyyy HH:mm")</i>
+    </section>
+</article>

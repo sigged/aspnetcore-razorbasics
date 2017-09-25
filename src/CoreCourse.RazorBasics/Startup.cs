@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CoreCourse.RazorBasics.Domain.Services;
+using CoreCourse.RazorBasics.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CoreCourse.RazorBasics.Mvc;
 
 namespace CoreCourse.RazorBasics
 {
@@ -32,6 +29,7 @@ namespace CoreCourse.RazorBasics
             services.AddMvc();
 
             services.AddTransient<IMazeDecorationService, GrayMazeDecorationService>();
+            services.AddTransient<INewsArticleService, NewsArticleFakeService>();
             //services.AddTransient<IMazeDecorationService, FancyMazeDecorationService>();
         }
 
@@ -55,6 +53,11 @@ namespace CoreCourse.RazorBasics
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "TH-MethodWithParameters",
+                    template: "TagHelpers/MethodWithParameters/{id:int}/{filterText}",
+                    defaults: new { controller = "TagHelpers", action = "MethodWithParameters"});
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

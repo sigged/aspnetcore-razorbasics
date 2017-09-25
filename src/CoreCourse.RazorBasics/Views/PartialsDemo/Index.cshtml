@@ -1,0 +1,56 @@
+@model CoreCourse.RazorBasics.ViewModels.PartialsDemoIndexVm
+@{
+    ViewData["Title"] = "Partials Demo";
+}
+
+<h2>Partials Demo</h2>
+
+<section style="margin:40px 0 20px 0;">
+    <h3>Example 1: NewsArticleView with model, using Html.Partial</h3>
+    <p>These articles are rendered using the <code>Html.Partial</code> method. They are contained in a Partial View named <code>NewsArticleView</code>. <br />
+    Each Partial receives a model containing the article to display</p>
+    <section>
+        @foreach (var newsArticle in Model.NewsArticles)
+        {
+            @Html.Partial("NewsArticleView", newsArticle)
+        }
+    </section>
+</section>
+<section style="margin:40px 0 20px 0;">
+    <h3>Example 2: NewsArticleView with model, using Html.RenderPartial</h3>
+    <p>
+        These articles are rendered using the <code>Html.RenderPartial</code> method. They are contained in a Partial View named <code>NewsArticleView</code>. <br />
+        Each Partial receives a model containing the article to display.<br />
+    </p>
+    <p>
+        Note how a ViewData key named <code>LimitChars</code> is set, and accessed inside the Partial View. This limits the content to 20 characters.
+    </p>
+
+    <section>
+        @{
+            ViewBag.LimitChars = 20;
+            //RenderPartial must be called in a Razor Code block!
+            foreach (var newsArticle in Model.NewsArticles)
+            {
+                Html.RenderPartial("NewsArticleView", newsArticle);
+            }
+        }
+    </section>
+</section>
+<section style="margin:40px 0 20px 0;">
+    <h3>Example 3: NewsArticleTitle with model, in a custom location</h3>
+    <p>
+        The Partial View named <code>NewsArticleTitle</code> displays only basic news information.<br />
+        It resides in a custom folder: <code>"~/Views/PartialsDemo/Partials/</code>.<br />
+        To render it, you can specify the full path, including the <code>.cshtml</code> extension.
+    </p>
+    <section class="well">
+        <ul>
+            @foreach (var newsArticle in Model.NewsArticles)
+            {
+                @Html.Partial("~/Views/PartialsDemo/Partials/NewsArticleTitle.cshtml", newsArticle)
+            }
+        </ul>
+    </section>
+</section>
+

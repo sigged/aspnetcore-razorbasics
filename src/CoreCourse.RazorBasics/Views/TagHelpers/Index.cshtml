@@ -1,0 +1,195 @@
+@{
+    ViewData["Title"] = "Tag Helpers";
+}
+
+<h2>Tag Helpers</h2>
+<p>
+    <u>Remark:</u> These examples do not include the form-specific Tag Helpers.<br />
+    You may find these in another example project.
+</p>
+
+<section style="margin:40px 0 20px 0;">
+    <header><h3>Anchor Tag Helpers</h3></header>
+    <section>
+        <article class="clearfix">
+            <p>
+                <header><b>Legend</b></header>
+                <br />
+                <article>
+                    <div>
+                        <button class="pull-left btn btn-primary" style="width:20px;height:20px;"></button><div class="pull-left" style="margin:0 10px;">Literal URL</div>
+                        <button class="pull-left btn btn-success" style="width:20px;height:20px;"></button><div class="pull-left" style="margin:0 10px;">Using Tag Helpers</div>
+                        <button class="pull-left btn btn-warning" style="width:20px;height:20px;"></button><div class="pull-left" style="margin:0 10px;">Using HTML or URL Helpers</div>
+                    </div>
+                </article>
+            </p>
+        </article>
+    </section>
+    <br />
+    <header><h4>Example 1 - a-element/actionlink</h4></header>
+    <div>
+        <a class="btn btn-primary" href="/Home/Blocks">Go to Blocks</a>
+        <a asp-controller="Home" asp-action="Blocks" class="btn btn-success">Go to Blocks</a>
+        @Html.ActionLink("Go to Blocks", "Blocks", new { controller = "Home" }, new { @class = "btn btn-warning" })
+    </div>
+    <br />
+    <header><h4>Example 2 - with route parameters</h4></header>
+    <p>Note the existence of a route for method TagHelpers/MethodWithParameters in Startup.cs</p>
+    <div>
+        <a class="btn btn-primary" href="/TagHelpers/MethodWithParameters/7/example%two">Go to MethodWithParameters</a>
+        <a asp-controller="TagHelpers" asp-action="MethodWithParameters"  asp-route-id="7" asp-route-filterText="example two" class="btn btn-success">Go to MethodWithParameters</a>
+        @Html.ActionLink("Go To MethodWithParameters", "MethodWithParameters", new { controller = "TagHelpers", id=7, filterText="example two" }, new { @class = "btn btn-warning" })
+    </div>
+    <br />
+    <header><h4>Example 3 - route parameters from variables</h4></header>
+    <p>Note the existence of a route for method TagHelpers/MethodWithParameters in Startup.cs</p>
+    <div>
+        @{ 
+            int theId = 8;
+            string theFilterText = "example three";
+        }
+        <a class="btn btn-primary" href="/TagHelpers/MethodWithParameters/@(theId)/@(theFilterText)">Go to MethodWithParameters</a>
+        <a asp-controller="TagHelpers" asp-action="MethodWithParameters" asp-route-id=@(theId) asp-route-filterText=@(theFilterText) class="btn btn-success">Go to MethodWithParameters</a>
+        @Html.ActionLink("Go To MethodWithParameters", "MethodWithParameters", new { controller = "TagHelpers", id = theId, filterText = theFilterText }, new { @class = "btn btn-warning" })
+    </div>
+    <br />
+    <header><h4>Example 4 - by route name</h4></header>
+    <p>Note the absence of <code>asp-action</code> and <code>asp-controller</code> by specifying only the route name in <code>asp-route</code></p>
+    <div>
+        <a class="btn btn-primary" href="/TagHelpers/MethodWithParameters/8/example%20four">Go to MethodWithParameters</a>
+        <a asp-route="TH-MethodWithParameters" asp-route-id="9" asp-route-filterText="example four" class="btn btn-success">Go to MethodWithParameters</a>
+    </div>
+    <br />
+    <header><h4>Example 5 - host, protocol, fragment</h4></header>
+    <div>
+        <a class="btn btn-primary" href="https://www.mydomain.test:5000/Home/Dashboard#statistics">Go to non-exising HTTPS URL</a>
+        <a asp-protocol="https" asp-host="www.mydomain.test:5000" asp-controller="Home" asp-action="Dashboard" 
+           asp-fragment="statistics" class="btn btn-success">Go to non-exising HTTPS URL</a>
+    </div>
+</section>
+
+<section style="margin:40px 0 20px 0;">
+    <header><h3>Image Tag Helper</h3></header>
+
+    <header><h4>Example - Right image has cache busting</h4></header>
+    <article class="panel panel-default">
+        <section class="panel-body">
+            <img src="~/images/angry-bird-current.png" alt="Bird" />
+            <img asp-append-version="true" src="~/images/angry-bird-current.png" alt="Bird" />
+        </section>
+    </article>
+    <div>
+        <p>Both images reference the same filename.</p>
+        <p>
+        Clicking the button below will cause the server to swap the image with another by renaming them. Browsers with caching enabled will not pick this up, causing the image on the left to appear the same. 
+        The right image has cache busting enabled, so the change should be visible right away.
+        </p>
+        <a class="btn btn-primary" asp-action="SwapImage">Change image and redirect</a>
+    </div>
+    <br />
+</section>
+
+<section style="margin:40px 0 20px 0;">
+    <header><h3>Link &amp; Script Tag Helper</h3></header>
+
+    <header><h4>Example 1 - Loading all scripts from a folder</h4></header>
+    <p>
+        All scripts in the folder <code>/wwwroot/js/examples/</code> are loaded, <b>except</b> the ones ending with <code>"_not_me_plz.js"</code>.<br />
+        The scripts simply write in the div below:
+    </p>
+    <pre class="well bg-info">
+<script asp-src-include="~/js/examples/*.js" asp-src-exclude="~/js/examples/*_not_me_plz.js"></script>
+    </pre>
+    <br />
+    <header><h4>Example 2 - Loading all scripts in a folder tree</h4></header>
+    <p>
+        All scripts in the folder tree of <code>/wwwroot/js/examples/</code> are loaded using globbing with <code>**/*</code>, <b>except</b> the ones ending with <code>"_not_me_plz.js"</code>.<br />
+        The scripts simply write in the div below:
+    </p>
+    <pre class="well bg-info">
+<script asp-src-include="~/js/examples/**/*.js" asp-src-exclude="~/js/examples/**/*_not_me_plz.js"></script>
+    </pre>
+    <p>Loading <code>&lt;link&gt;</code> sources is done using similar attributes and globbing, but remember these can only be declared in the <code>&lt;head&gt;&lt;/head&gt;</code></p>
+    <br />
+</section>
+
+
+<section style="margin:40px 0 20px 0;">
+    <header><h3>Environment Tag Helper</h3></header>
+
+    <header><h4>Example - Display current Environment</h4></header>
+    <p>
+        When you change the Environment variable named <code>ASPNETCORE_ENVIRONMENT</code> in the project's properties to <code>Development</code>, <code>Staging</code> or <code>Production</code>, you will see a different panel below.
+    </p>
+    <environment names="Development,Staging">
+        <article class="panel panel-warning">
+            <header class="panel-heading"><span class="glyphicon glyphicon-warning-sign"></span> Warning! Not ready for Production</header>
+            <section class="panel-body">Your application is currently still in <code>Staging</code> or <code>Staging</code> mode. Please change the Environment to <code>Production</code> before deploying the site to a production server.</section>
+        </article>
+    </environment>
+    <environment names="Production">
+        <article class="panel panel-success">
+            <header class="panel-heading"><span class="glyphicon glyphicon-ok-sign"></span> Ready for Production!</header>
+            <section class="panel-body">Your application is ready for Production and can deployed to a production server.</section>
+        </article>
+    </environment>
+    <br />
+</section>
+@{ string DataFromDatabase = "";}
+
+<section style="margin:40px 0 20px 0;">
+    <header><h3>Cache Tag Helper</h3></header>
+
+    <header><h4>Example 1 - Cache with fixed expiration (15s)</h4></header>
+    <article class="panel panel-default">
+        <header class="panel-heading">Cached by duration</header>
+        <section class="panel-body">
+            <cache enabled="true" expires-after="@(TimeSpan.FromSeconds(15))" vary-by->
+                This content was cached on <b>@DateTime.Now.ToString("HH:mm:ss")</b> for 15 seconds. 
+                It will be renewed at <b>@DateTime.Now.AddSeconds(15).ToString("HH:mm:ss")</b>.
+                <br/>@DataFromDatabase
+                Try refreshing past this time to see the times change.
+                <br />
+            </cache>
+        </section>
+    </article>
+    <br />
+
+    <header><h4>Example 2 - Cache with sliding expiration (15s)</h4></header>
+    <article class="panel panel-default">
+        <header class="panel-heading">Cached by sliding duration</header>
+        <section class="panel-body">
+            <cache enabled="true" expires-sliding="@(TimeSpan.FromSeconds(15))">
+                This content was cached on <b>@DateTime.Now.ToString("HH:mm:ss")</b> for 15 seconds.
+                It will be renewed at <b>@DateTime.Now.AddSeconds(15).ToString("HH:mm:ss")</b>, but <b>only if you don't refresh before this time</b>.
+            </cache>
+            <br />
+            This is called sliding expiration.
+            <br /><br />
+            <span class="countdown"></span>
+        </section>
+    </article>
+    <br />
+
+    <header><h4><a id="cachebyvary"></a>Example 3 - Cache with vary-by expiration</h4></header>
+    
+    <article class="panel panel-default">
+        <header class="panel-heading">Cached with vary-by-query</header>
+        <section class="panel-body">
+            <p>
+                <cache enabled="true" vary-by-query="changemetoexpire" expires-sliding="@(TimeSpan.FromMinutes(1))">
+                    This content was cached on <b>@DateTime.Now.ToString("HH:mm:ss")</b>, and is different per new value of the querystring key named <code>changemetoexpire</code>.<br />
+                    When the key-value <b>@(Context.Request.Query["changemetoexpire"])</b> is no longer used for more than 1 minute, this cached content expires.<br />
+                </cache>
+            </p>
+            <p>
+                <button class="btn btn-primary" onclick="refreshAndKeepParameter()">Refresh only</button>
+                <button class="btn btn-primary" onclick="refreshAndChangeParameter()">Refresh and change querystring</button>
+            </p>
+        </section>
+    </article>
+    <br />
+</section>
+
+<script src="~/js/stopwatch.js"></script>
+<script src="~/js/refresher.js"></script>

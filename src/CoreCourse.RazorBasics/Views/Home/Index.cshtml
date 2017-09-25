@@ -11,51 +11,84 @@
             <p>For a clear understanding, you will need access to the accompanying <b>ASP.NET Core</b> course book</p>
         </div>
     </div>
-    <div class="col-md-3">
-        <h2>@Html.ActionLink("Expressions", "Expressions") &raquo;</h2>
-        <ul>
-            <li>Implicit expressions</li>
-            <li>Explicit expressions</li>
-            <li>Html Encoding</li>
-        </ul>
+    <div class="col-md-9">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2><a asp-action="Expressions" asp-controller="Home">Expressions</a> &raquo;</h2>
+                    <ul>
+                        <li>Implicit expressions</li>
+                        <li>Explicit expressions</li>
+                        <li>Html Encoding</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2><a asp-action="Blocks" asp-controller="Home">Blocks</a> &raquo;</h2>
+                    <ul>
+                        <li>Code Blocks</li>
+                        <li>Implicit transitions</li>
+                        <li>Explicit transitions</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2><a asp-action="Structures" asp-controller="Home">Structures</a> &raquo;</h2>
+                    <ul>
+                        <li>if/else</li>
+                        <li>switch/case</li>
+                        <li>iteration</li>
+                        <li>enumeration</li>
+                        <li>try/catch</li>
+                        <li>"using" block</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2><a asp-action="Directives" asp-controller="Home">Directives</a> &raquo;</h2>
+                    <ul>
+                        <li>@@model directive</li>
+                        <li>@@using directive</li>
+                        <li>@@inject directive</li>
+                        <li>@@function directive</li>
+                        <li>@@section directive</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2><a asp-action="Alpha" asp-controller="LayoutExamples">Layout</a> &raquo;</h2>
+                    <ul>
+                        <li>Layout property</li>
+                        <li>Sections</li>
+                        <li>ViewBag/ViewData</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2><a asp-action="Index" asp-controller="TagHelpers">Tag Helpers</a> &raquo;</h2>
+                    <ul>
+                        <li>Anchor</li>
+                        <li>Image</li>
+                        <li>Link &amp; Script</li>
+                        <li>Environment</li>
+                        <li>Cache</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2><a asp-action="Index" asp-controller="PartialsDemo">Partial Views</a> &raquo;</h2>
+                    <ul>
+                        <li>Partial() method</li>
+                        <li>RenderPartial() method</li>
+                        <li>Passing in a View Model</li>
+                        <li>Using View Data</li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <h2><a asp-action="Index" asp-controller="ViewCompDemo">View Components</a> &raquo;</h2>
+                    <ul>
+                        <li>Custom naming</li>
+                        <li>Independent data</li>
+                        <li>Using parameters</li>
+                        <li>View Components as Tag Helpers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>@Html.ActionLink("Blocks", "Blocks") &raquo;</h2>
-        <ul>
-            <li>Code Blocks</li>
-            <li>Implicit transitions</li>
-            <li>Explicit transitions</li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>@Html.ActionLink("Structures", "Structures") &raquo;</h2>
-        <ul>
-            <li>if/else</li>
-            <li>switch/case</li>
-            <li>iteration</li>
-            <li>enumeration</li>
-            <li>try/catch</li>
-            <li>"using" block</li>
-        </ul>
-    </div>
-
-    <div class="col-md-3">
-        <h2>@Html.ActionLink("Directives", "Directives") &raquo;</h2>
-        <ul>
-            <li>@@model directive</li>
-            <li>@@using directive</li>
-            <li>@@inject directive</li>
-            <li>@@function directive</li>
-            <li>@@section directive</li>
-        </ul>
-    </div>
-
-    <div class="col-md-3">
-        <h2>@Html.ActionLink("Layout", "Alpha", "LayoutExamples") &raquo;</h2>
-        <ul>
-            <li>Layout property</li>
-            <li>Sections</li>
-            <li>ViewBag/ViewData</li>
-        </ul>
-    </div>
+    
 </div>

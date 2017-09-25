@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "View Components Demo";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<section style="margin:40px 0 20px 0;">
+    <h3>Example 1: NewsItems View Component</h3>
+    <p>
+        These articles are rendered using the <code>Component.InvokeAsync</code> method. They are contained in a View Component named <code>NewsItems</code>. <br />
+        However, the class is called <code>NewsComponent</code>.
+    </p>
+    <section>@{  }
+        @await Component.InvokeAsync("NewsItems")
+    </section>
+</section>
+
+<section style="margin:40px 0 20px 0;">
+    <h3>Example 2: NewsItems View Component with parameters</h3>
+    <p>
+        These articles are rendered using the <code>Component.InvokeAsync</code> method. They are contained in a View Component named <code>NewsItems</code>. <br />
+        This time, the two parameters of this Componentn are specified using an anonymouse type instance.
+    </p>
+    <section>
+        @await Component.InvokeAsync("NewsItems", new { sortDescending = true, maxItems = 2 })
+    </section>
+</section>
+
+<section style="margin:40px 0 20px 0;">
+    <h3>Example 3: NewsItems View Component using a Tag Helper</h3>
+    <p>
+        These articles are rendered using the <code>NewsItem</code> View Component, but invoked through a Tag Helper.
+    </p>
+    <section>
+        <vc:news-items sort-descending="true" max-items="2"></vc:news-items>
+    </section>
+</section>
+
+<section style="margin:40px 0 20px 0;">
+    <h3>Example 4: NewsItems View Component as a Controller endpoint</h3>
+    <p>
+        These articles are rendered using the <code>NewsItem</code> View Component, but invoked through a Tag Helper.
+    </p>
+    <section>
+        <vc:news-items sort-descending="true" max-items="2"></vc:news-items>
+    </section>
+</section>

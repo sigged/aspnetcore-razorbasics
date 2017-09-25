@@ -25,5 +25,8 @@
   <ItemGroup>
     <None Include="ViewModels\HomeStructuresVm.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Shared\Components\NewsItems\" />
+  </ItemGroup>
 
 </Project>

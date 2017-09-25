@@ -4,7 +4,7 @@ namespace CoreCourse.RazorBasics.Controllers
 {
     public class LayoutExamplesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Alpha()
         {
             return View();
         }
