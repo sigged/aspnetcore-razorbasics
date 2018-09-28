@@ -1,6 +1,6 @@
 ﻿function refreshAndKeepParameter() {
     var newurl = document.location.toString();
-    if (newurl.indexOf("#cachebyvary") == -1)
+    if (newurl.indexOf("#cachebyvary") === -1)
         newurl += "#cachebyvary";
     document.location = newurl;
     document.location.reload();
@@ -8,7 +8,7 @@
 
 function refreshAndChangeParameter() {
     var newurl = UpdateQueryString("changemetoexpire", RandomString(), document.location.toString());
-    if (newurl.indexOf("#cachebyvary") == -1)
+    if (newurl.indexOf("#cachebyvary") === -1)
         newurl += "#cachebyvary";
     document.location = newurl;
 }

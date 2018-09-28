@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CoreCourse.RazorBasics.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using CoreCourse.RazorBasics.ViewModels;
+using System;
+using System.Diagnostics;
 
 namespace CoreCourse.RazorBasics.Controllers
 {
@@ -14,13 +12,12 @@ namespace CoreCourse.RazorBasics.Controllers
             return View();
         }
 
-
         public IActionResult Expressions()
         {
             var vm = new HomeExpressionsVm
             {
                 UserName = "siegfried",
-                UserPrimaryMail ="siegfried@example.com",
+                UserPrimaryMail = "siegfried@example.com",
                 UserAllMail = new string[] { "siegfried@example.com", "sigge@com.example" },
                 MaxAddresses = 10,
                 MailDomain = "@example.com",
@@ -50,7 +47,7 @@ namespace CoreCourse.RazorBasics.Controllers
         {
             Random r = new Random();
             structures.DiceValues = new int[structures.NumberOfDice];
-            for(int dice = 0; dice < structures.NumberOfDice; dice++)
+            for (int dice = 0; dice < structures.NumberOfDice; dice++)
             {
                 structures.DiceValues[dice] = r.Next(6) + 1;
             }
@@ -63,7 +60,7 @@ namespace CoreCourse.RazorBasics.Controllers
             HomeDirectivesVm viewmodel = new HomeDirectivesVm();
             //generate maze cells
             viewmodel.MazeCells = new bool[30, 30];
-            for(int x = 0; x < viewmodel.MazeCells.GetUpperBound(0); x++)
+            for (int x = 0; x < viewmodel.MazeCells.GetUpperBound(0); x++)
             {
                 for (int y = 0; y < viewmodel.MazeCells.GetUpperBound(1); y++)
                 {
@@ -74,9 +71,15 @@ namespace CoreCourse.RazorBasics.Controllers
             return View(viewmodel);
         }
 
-        public IActionResult Error()
+        public IActionResult Privacy()
         {
             return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

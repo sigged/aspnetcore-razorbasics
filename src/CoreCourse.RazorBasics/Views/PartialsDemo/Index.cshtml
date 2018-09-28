@@ -6,13 +6,13 @@
 <h2>Partials Demo</h2>
 
 <section style="margin:40px 0 20px 0;">
-    <h3>Example 1: NewsArticleView with model, using Html.Partial</h3>
-    <p>These articles are rendered using the <code>Html.Partial</code> method. They are contained in a Partial View named <code>NewsArticleView</code>. <br />
+    <h3>Example 1: NewsArticleView with model, using <code>&lt;partial&gt;</code></h3>
+    <p>These articles are rendered using the <code>&lt;partial&gt;</code> Tag Helper. They are contained in a Partial View named <code>NewsArticleView</code>. <br />
     Each Partial receives a model containing the article to display</p>
     <section>
         @foreach (var newsArticle in Model.NewsArticles)
         {
-            @Html.Partial("NewsArticleView", newsArticle)
+            <partial name="NewsArticleView" model="newsArticle" />
         }
     </section>
 </section>
@@ -32,7 +32,7 @@
             //RenderPartial must be called in a Razor Code block!
             foreach (var newsArticle in Model.NewsArticles)
             {
-                Html.RenderPartial("NewsArticleView", newsArticle);
+                await Html.RenderPartialAsync("NewsArticleView", newsArticle);
             }
         }
     </section>
@@ -48,7 +48,7 @@
         <ul>
             @foreach (var newsArticle in Model.NewsArticles)
             {
-                @Html.Partial("~/Views/PartialsDemo/Partials/NewsArticleTitle.cshtml", newsArticle)
+                @await Html.PartialAsync("~/Views/PartialsDemo/Partials/NewsArticleTitle.cshtml", newsArticle)
             }
         </ul>
     </section>
