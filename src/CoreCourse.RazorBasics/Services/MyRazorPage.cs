@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace CoreCourse.RazorBasics.Mvc
+namespace CoreCourse.RazorBasics.Services
 {
     public abstract class MyRazorPage<TModel> :  RazorPage<TModel>
     {
